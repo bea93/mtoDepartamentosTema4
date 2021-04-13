@@ -104,8 +104,8 @@
                         $consulta->execute(); //Ejecutamos la consulta
 
                         echo "DEPARTAMENTO " . $_REQUEST['codigo'] . " BORRADO CON ÉXITO";
-                        echo "<br/>";
-                        echo "<br/>";
+                        echo "<br>";
+                        echo "<br>";
                         echo "<a href='mtoDepartamentos.php'><input type='button'  value='Volver'></a>";
                     } catch (PDOException $exc) {
                         echo $exc->getMessage();

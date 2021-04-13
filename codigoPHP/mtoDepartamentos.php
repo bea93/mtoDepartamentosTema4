@@ -85,7 +85,6 @@
                     <p>&copy; 2021 Beatriz Merino Macía.</p>
                 </div>
             </aside>
-        </div>
             <div id="fh5co-main">
                 <div class="fh5co-narrow-content">
                     <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Mto. Departamentos Tema 4</h2>
@@ -142,33 +141,42 @@
                     if ($consultaSelect->rowCount() == 0) {
                         echo "No se ha encontrado ningún departamento con esa descripcion";
                     } else {
-                        //Crea una tabla con los datos del departamento
-                        echo "<table border='0'>";
-                        echo "<tr>";
-                        echo "<th>Codigo</th>";
-                        echo "<th>Descripción</th>";
-                        echo "<th colspan'2'>Volumen de negocio</th>";
-                        echo "<th></th>";
-                        echo "</tr>";
+                        ?>
+                        <table border='0'>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Descripción</th>
+                            <th>Volumen de negocio</th>
+                            <th></th>
+                        </tr>
+                        <?php
                         //Al realizar el fetchObject, se pueden sacar los datos de $registro como si fuera un objeto
-                        while ($registro = $consultaSelect->fetchObject()) { 
-                            echo "<tr>";
-                            echo "<td>$registro->CodDepartamento</td>";
-                            echo "<td>$registro->DescDepartamento</td>";
-                            echo "<th>$registro->VolumenNegocio</th>";
-                            echo "<td>";
-                            echo "<a href='mostrarDepartamento.php?codigo=$registro->CodDepartamento'><i class='far fa-eye'></i></a>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<a href='editarDepartamento.php?codigo=$registro->CodDepartamento'><i class='fas fa-pencil-alt'></i></a>";
-                            echo "</td>";
-                            echo "<td>";
-                            echo "<a href='bajaDepartamento.php?codigo=$registro->CodDepartamento'><i class='far fa-trash-alt'></i></a>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        echo "</table>";
-                    }
+                        //Obtenemos la siguiente fila del resultado de la consulta y avanzamos el puntero a la siguiente fila
+                        $registro = $consultaSelect->fetchObject();
+                        while ($registro) {
+                            ?>
+                            <tr>
+                                <td><?php echo $registro->CodDepartamento?></td>
+                                <td><?php echo $registro->DescDepartamento?></td>
+                                <td><?php echo $registro->VolumenNegocio?></td>
+                                <td>
+                                    <a href='mostrarDepartamento.php?codigo=$registro->CodDepartamento'><i class='far fa-eye'></i></a>
+                                </td>
+                                <td>
+                                    <a href='editarDepartamento.php?codigo=$registro->CodDepartamento'><i class='fas fa-pencil-alt'></i></a>
+                                </td>
+                                <td>
+                                    <a href='bajaDepartamento.php?codigo=$registro->CodDepartamento'><i class='far fa-trash-alt'></i></a>
+                                </td>
+                            </tr>
+                            <?php
+                            //Obtenemos la siguiente fila del resultado de la consulta y avanzamos el puntero a la siguiente fila
+                                $registro = $consultaSelect->fetchObject();
+                            }
+                        
+                        ?>
+                        </table>
+                    <?php }
                 //Captura la excepción
                 } catch (PDOException $mensajeError) {
                     //Mensaje de salida
@@ -180,7 +188,7 @@
                     unset($miBD); 
                 } ?>
                 </div> 
-            </div>
+            </div> 
             <!-- jQuery -->
             <script src="../webroot/js/jquery.min.js"></script>
             <!-- jQuery Easing -->

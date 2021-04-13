@@ -180,6 +180,10 @@
             //Ejecuta la consulta
             $selectSQL->execute();
 
+            //Redirigimos al usuario a la página inicial
+            //header("Location: mtoDepartamentos.php");
+            echo "<p style='color: green'>El departamento <strong>" . $aFormulario['CodDepartamento'] . "</strong> se ha añadido con éxito</p>";
+            echo "<a href='mtoDepartamentos.php'><input type='button'  value='Volver'></a>";
                 
             } catch (PDOException $mensajeError) { //Cuando se produce una excepcion se corta el programa y salta la excepci�n con el mensaje de error
                 echo "<h3>Mensaje de ERROR</h3>";
