@@ -8,10 +8,12 @@
     USE DAW213DBdepartamentos;
 
 /* Creación de la table departamento */
-CREATE TABLE IF NOT EXISTS Departamento (
-    CodDepartamento CHAR(3) PRIMARY KEY,
-    DescDepartamento VARCHAR(255) NOT NULL
-)  ENGINE=INNODB;
+CREATE TABLE Departamento (
+            CodDepartamento VARCHAR(3) PRIMARY KEY,
+            DescDepartamento VARCHAR(255) NOT NULL,
+            FechaBaja INT DEFAULT NULL,
+            VolumenNegocio FLOAT DEFAULT NULL
+    ) ENGINE=INNODB;
 
 /* Dar permisos al usuario creado */
     GRANT ALL PRIVILEGES ON DAW213DBdepartamentos.* TO 'usuarioDAW213Departamentos'@'%'; 
@@ -20,13 +22,12 @@ CREATE TABLE IF NOT EXISTS Departamento (
 USE DAW213DBdepartamentos;
 
 /* Introduccion de datos dentro de la tabla creada */
-INSERT INTO Departamento(CodDepartamento,DescDepartamento) VALUES
-('INF', 'Departamento de informatica'),
-('VEN', 'Departamento de ventas'),
-('CON', 'Departamento de contabilidad'),
-('COC', 'Departamento de cocina'),
-('MEC', 'Departamento de mecanica'),
-('MAT', 'Departamento de matematicas');
+INSERT INTO Departamento(CodDepartamento,DescDepartamento,FechaBaja, VolumenNegocio) VALUES
+        ('INF', 'Departamento de informatica',1574772123, 50),
+        ('VEN', 'Departamento de ventas',1574772123, 800000),
+        ('CON', 'Departamento de contabilidad',1574772123, 900000),
+        ('MAT', 'Departamento de matematicas',1574772123, 80000000),
+        ('CAT', 'Departamento de gatos',1574772123, 12584631268);
 
 /* Borrar base de datos */
 DROP database DAW213DBdepartamentos;

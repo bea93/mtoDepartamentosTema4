@@ -85,6 +85,7 @@
                     <p>&copy; 2021 Beatriz Merino Macía.</p>
                 </div>
             </aside>
+        </div>
             <div id="fh5co-main">
                 <div class="fh5co-narrow-content">
                     <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Mto. Departamentos Tema 4</h2>
@@ -179,8 +180,7 @@
                     unset($miBD); 
                 } ?>
                 </div> 
-            </div> 
-        </div>
+            </div>
             <!-- jQuery -->
             <script src="../webroot/js/jquery.min.js"></script>
             <!-- jQuery Easing -->
