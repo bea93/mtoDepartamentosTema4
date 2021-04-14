@@ -85,6 +85,7 @@
                     <p>&copy; 2021 Beatriz Merino Macía.</p>
                 </div>
             </aside>
+            </div>
             <div id="fh5co-main">
                 <div class="fh5co-narrow-content">
                     <h2 class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Mto. Departamentos Tema 4</h2>
@@ -160,13 +161,13 @@
                                 <td><?php echo $registro->DescDepartamento?></td>
                                 <td><?php echo $registro->VolumenNegocio?></td>
                                 <td>
-                                    <a href='mostrarDepartamento.php?codigo=$registro->CodDepartamento'><i class='far fa-eye'></i></a>
+                                    <a href='<?php echo 'mostrarDepartamento.php?codigo='.$registro->CodDepartamento ?>'><i class='far fa-eye'></i></a>
                                 </td>
                                 <td>
-                                    <a href='editarDepartamento.php?codigo=$registro->CodDepartamento'><i class='fas fa-pencil-alt'></i></a>
+                                    <a href='<?php echo 'editarDepartamento.php?codigo='.$registro->CodDepartamento ?>'><i class='fas fa-pencil-alt'></i></a>
                                 </td>
                                 <td>
-                                    <a href='bajaDepartamento.php?codigo=$registro->CodDepartamento'><i class='far fa-trash-alt'></i></a>
+                                    <a href='<?php echo 'bajaDepartamento.php?codigo='.$registro->CodDepartamento ?>'><i class='far fa-trash-alt'></i></a>
                                 </td>
                             </tr>
                             <?php
@@ -188,7 +189,8 @@
                     unset($miBD); 
                 } ?>
                 </div> 
-            </div> 
+            </div>
+        
             <!-- jQuery -->
             <script src="../webroot/js/jquery.min.js"></script>
             <!-- jQuery Easing -->

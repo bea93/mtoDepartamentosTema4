@@ -129,7 +129,7 @@
                 $consultaSelect->execute();
                 //Si la consulta devuelve alg�n valor es porque el c�digo est� duplicado, da error
                 if($consultaSelect->rowCount()>0){
-                    $aErrores['CodDepartamento']= "El c�digo de Departamento introducido ya existe";
+                    $aErrores['CodDepartamento']= "El código de Departamento introducido ya existe";
 
                 }
                 

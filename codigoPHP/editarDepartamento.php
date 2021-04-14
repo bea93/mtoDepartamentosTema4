@@ -43,18 +43,14 @@ try {
 }
 
 
-if (isset($_REQUEST['Modificar'])) { //Comprobamos que el usuario haya enviado el formulario
-    $aErrores['DescDepartamento'] = validacionFormularios::comprobarAlfaNumerico($_REQUEST['DescDepartamento'], 255, 1, OBLIGATORIO); //Comprobamos que la descripción del departamento sea alfanumérico
-    $aErrores['VolumenNegocio'] = validacionFormularios::comprobarFloat($_REQUEST['VolumenNegocio'], PHP_FLOAT_MAX, PHP_FLOAT_MIN, OBLIGATORIO); //Comprobamos que el volumen de negocio sea float
-    // Recorremos el array de errores
-    foreach ($aErrores as $campo => $error) {
-        if ($error != null) { // Comprobamos que el campo no esté vacio
-            $entradaOK = false; // En caso de que haya algún error le asignamos a entradaOK el valor false para que vuelva a rellenar el formulario      
-            $_REQUEST[$campo] = "";
+if (isset($_REQUEST['Modificar'])) {
+    $aErrores['descripcion'] = validacionFormularios::comprobarAlfaNumerico($_POST['descripcion'], 255, 1, 1);
+    $aErrores['volumen'] = validacionFormularios::comprobarFloat($_POST['volumen'], PHP_FLOAT_MAX, 0, 1);
+    foreach ($aErrores as $key => $value) {
+        if ($value != null) {
+            $entradaOK = false;
         }
     }
-} else {
-    $entradaOK = false; // Si el usuario no ha enviado el formulario asignamos a entradaOK el valor false para que rellene el formulario
 }
 if ($entradaOK == true && isset($_REQUEST['Modificar'])) {
     try {
@@ -149,9 +145,6 @@ if ($entradaOK == true && isset($_REQUEST['Modificar'])) {
                     .obligatorio{
                         background-color: lightgray;
                     }
-                    .error{
-                        color: red;
-                    }
                 </style>
 
             </head>
@@ -178,21 +171,12 @@ if ($entradaOK == true && isset($_REQUEST['Modificar'])) {
                             <form action="<?php echo $_SERVER['PHP_SELF'] ?>" name="Añadirformulario" method="POST">
                     <fieldset>
                         <label for="codigo">Código:</label>
-                        <input type="text" name="codigo2" id="codigo2" disabled style="border: 1px solid black" 
-                               value="<?php echo $resultado->CodDepartamento ?>"><br><br>
+                        <input type="text" name="codigo2" id="codigo2" disabled style="border: 1px solid black" value="<?php echo $resultado->CodDepartamento ?>"><br><br>
                         <input type="hidden" name="codigo" id="codigo" value="<?php echo $resultado->CodDepartamento ?>">
-                        
                         <label for="descripcion">Descripción:</label>
-                        <input type="text" name="descripcion" id="descripcion" class="obligatorio" style="border: 1px solid black" 
-                               value="<?php echo $resultado->DescDepartamento ?>">
-                        <?php echo($aErrores['descripcion']!=null ? "<span style='color:red'>".$aErrores['descripcion']."</span>" : null); ?>
-                        <br><br>
-                        
+                        <input type="text" name="descripcion" id="descripcion" class="obligatorio" style="border: 1px solid black" value="<?php echo $resultado->DescDepartamento ?>"><br><br>
                         <label for="volumen">Volumen de negocio:</label>
-                        <input type="text" name="volumen" id="volumen" class="obligatorio" style="border: 1px solid black" 
-                               value="<?php echo $resultado->VolumenNegocio ?>"><br><br>
-                        <?php echo($aErrores['volumen']!=null ? "<span style='color:red'>".$aErrores['volumen']."</span>" : null); ?>
-                        
+                        <input type="text" name="volumen" id="volumen" class="obligatorio" style="border: 1px solid black" value="<?php echo $resultado->VolumenNegocio ?>"><br><br>
                         <input type="submit" value="Modificar" name="Modificar">
                         <input type="submit" value="Cancelar" name="Cancelar">
                     </fieldset>
